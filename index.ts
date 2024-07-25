@@ -45,7 +45,3 @@ class Narrier {
 };
 
 export default Narrier;
-
-// const narrier = new Narrier("80", "8080");
-
-// narrier.start();
