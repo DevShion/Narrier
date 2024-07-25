@@ -19,7 +19,7 @@ class Narrier {
             from: { host: from[2], port: Number(from[3]), },
             to: { host: to[2], port: Number(to[3]), }
         };
-        console.log(this.addr);
+        // console.log(this.addr);
     }
     ;
     start = () => {
@@ -34,9 +34,12 @@ class Narrier {
         }).listen(addr.from.port, addr.from.host, () => {
             console.log(`
                 Port forwarding
-                from ${this.addr.from.host + ":" + this.addr.from.port}
-                to ${this.addr.to.host + ":" + this.addr.to.port}`);
+                from: ${this.addr.from.host + ":" + this.addr.from.port}
+                to: ${this.addr.to.host + ":" + this.addr.to.port}`);
         });
+    };
+    stop = () => {
+        this.server?.close();
     };
 }
 ;
