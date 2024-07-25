@@ -1,0 +1,37 @@
+{
+    "name": "@devshion/npfactory",
+    "version": "1.0.0",
+    "type": "module",
+    "main": "./main/index.js",
+    "types": "./index.ts",
+    "module": "./DIST/module/index.js",
+    "scripts": {
+        "build": "rm -rf ./DIST/cjs ./DIST/module && tsc -p ./tsconfig.json && tsc -p ./tsconfig.cjs.json && tsconfig-to-dual-package"
+    },
+    "exports": {
+        ".": {
+            "import": {
+                "types": "./index.ts",
+                "default": "./DIST/module/index.js"
+            },
+            "require": {
+                "types": "./index.ts",
+                "default": "./DIST/cjs/index.js"
+            },
+            "default": {
+                "types": "./index.ts",
+                "default": "./DIST/cjs/index.js"
+            }
+        }
+    },
+    "devDependencies": {
+        "tsconfig-to-dual-package": "^1.2.0"
+    },
+    "repository": {
+        "type": "git",
+        "url": "https://github.com/DevShion/npfactory"
+    },
+    "publishConfig": {
+        "registry": "https://npm.pkg.github.com"
+    }
+}
