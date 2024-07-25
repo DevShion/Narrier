@@ -1,5 +1,5 @@
 {
-    "name": "@devshion/npfactory",
+    "name": "@devshion/narrier",
     "version": "1.0.0",
     "type": "module",
     "main": "./main/index.js",
@@ -25,11 +25,12 @@
         }
     },
     "devDependencies": {
+        "@types/node": "^20.14.12",
         "tsconfig-to-dual-package": "^1.2.0"
     },
     "repository": {
         "type": "git",
-        "url": "https://github.com/DevShion/npfactory"
+        "url": "https://github.com/DevShion/narrier"
     },
     "publishConfig": {
         "registry": "https://npm.pkg.github.com"
