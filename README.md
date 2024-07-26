@@ -4,13 +4,13 @@
 
 NodeJS Port Forward module
 
-### Install
+## Install
 
 ```sh
 npm i @devshion/narrier
 ```
 
-### Usage
+## Usage
 
 ```ts
 import { Narrier } from "@devshion/narrier";
@@ -31,9 +31,9 @@ narier.srop().then(() => {
 });
 ```
 
-### Use Well known port?
+## Use Well known port?
 
-#### CentOS
+### CentOS
 
 ```sh
 $ sudo yum install libcap
@@ -46,7 +46,7 @@ Complete!
 $ sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 ```
 
-#### Ubuntu
+### Ubuntu
 
 ```sh
 $ sudo apt-get install libcap2-bin
