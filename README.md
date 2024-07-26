@@ -22,7 +22,7 @@ const narrier = new Narrier({
 
 // start
 narrier.start().then(() => {
-    // change process id here if you use "sudo"
+    // change process id here if you run with root
 });
 
 // stop
@@ -31,7 +31,7 @@ narier.srop().then(() => {
 });
 ```
 
-## Use Well known port?
+## Wanna use well-known port without root?
 
 ### CentOS
 
