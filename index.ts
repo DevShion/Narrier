@@ -2,7 +2,7 @@ import net from "net";
 
 type NarierOptions = { from: string, to: string };
 
-export class Narrier {
+export default class Narrier {
     private addrRegex = /^(([a-zA-Z\-\.0-9]+):)?(\d+)$/; // parse "80" and "localhost:80" or even "42mEANINg-life.com:80"
     private addr: {
         from: { host: string, port: number, },
@@ -45,5 +45,3 @@ export class Narrier {
         this.server?.close();
     };
 };
-
-export default Narrier;

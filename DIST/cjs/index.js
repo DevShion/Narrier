@@ -3,7 +3,6 @@ var __importDefault = (this && this.__importDefault) || function (mod) {
     return (mod && mod.__esModule) ? mod : { "default": mod };
 };
 Object.defineProperty(exports, "__esModule", { value: true });
-exports.Narrier = void 0;
 const net_1 = __importDefault(require("net"));
 class Narrier {
     addrRegex = /^(([a-zA-Z\-\.0-9]+):)?(\d+)$/; // parse "80" and "localhost:80" or even "42mEANINg-life.com:80"
@@ -43,6 +42,5 @@ class Narrier {
         this.server?.close();
     };
 }
-exports.Narrier = Narrier;
-;
 exports.default = Narrier;
+;

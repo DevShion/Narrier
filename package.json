@@ -1,6 +1,6 @@
 {
     "name": "@devshion/narrier",
-    "version": "1.0.1",
+    "version": "1.0.2",
     "type": "module",
     "main": "./main/index.js",
     "types": "./index.ts",
