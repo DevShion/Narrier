@@ -1,11 +1,15 @@
+![head.png](./assets/head.png)
+
 # Narrier
 ## NodeJS Port Forward module
 
-### How to use
+### Install
 
 ```sh
 npm i @devshion/narrier
 ```
+
+### Usage
 
 ```ts
 import { Narrier } from "@devshion/narrier";
@@ -28,7 +32,9 @@ narier.srop().then(() => {
 
 ### Use Well known port?
 
-```sh title="CentOS"
+#### CentOS
+
+```sh
 $ sudo yum install libcap
 Last metadata expiration check: 1 day, 18:51:33 ago on Thu Jul 25 01:01:27 2024.
 Package libcap-2.48-2.amzn2023.0.3.x86_64 is already installed.
@@ -39,7 +45,9 @@ Complete!
 $ sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 ```
 
-```sh title="Ubuntu"
+#### Ubuntu
+
+```sh
 $ sudo apt-get install libcap2-bin
 Last metadata expiration check: 1 day, 18:51:33 ago on Thu Jul 25 01:01:27 2024.
 Package libcap-2.48-2.amzn2023.0.3.x86_64 is already installed.
