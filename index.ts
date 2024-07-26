@@ -1,4 +1,5 @@
-import net from "net";
+// import { net } from "net";
+import * as net from "net";
 
 type NarierOptions = { from: string, to: string };
 
