@@ -1,4 +1,3 @@
-// import { net } from "net";
 import * as net from "net";
 
 type NarierOptions = { from: string, to: string };
@@ -23,26 +22,32 @@ export class Narrier {
         // console.log(this.addr);
     };
 
-    start = () => {
+    start = async () => {
         const addr = this.addr;
 
-        this.server = net.createServer((from) => {
-            const to = net.createConnection({
-                host: addr.to.host,
-                port: addr.to.port,
-            });
-            from.pipe(to);
-            to.pipe(from);
-        }).listen(addr.from.port, addr.from.host, () => {
-            console.log(`
+        await new Promise<void>((resolve) => {
+            this.server = net.createServer((from) => {
+                const to = net.createConnection({
+                    host: addr.to.host,
+                    port: addr.to.port,
+                });
+                from.pipe(to);
+                to.pipe(from);
+            }).listen(addr.from.port, addr.from.host, () => {
+                console.log(`
                 Port forwarding
-                from: ${this.addr.from.host + ":" + this.addr.from.port}
-                to: ${this.addr.to.host + ":" + this.addr.to.port}`
-            );
+                from: ${(this.addr.from.host ? this.addr.from.host : "127.0.0.1") + ":" + this.addr.from.port}
+                to: ${(this.addr.to.host ? this.addr.to.host : "127.0.0.1") + ":" + this.addr.to.port}`
+                );
+                resolve();
+            });
         });
     };
 
-    stop = () => {
-        this.server?.close();
+    stop = async () => {
+        await new Promise<void>((resolve) => {
+            this.server?.close();
+            resolve();
+        });
     };
 };

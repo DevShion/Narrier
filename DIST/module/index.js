@@ -24,7 +24,6 @@ var __importStar = (this && this.__importStar) || function (mod) {
 };
 Object.defineProperty(exports, "__esModule", { value: true });
 exports.Narrier = void 0;
-// import { net } from "net";
 const net = __importStar(require("net"));
 class Narrier {
     addrRegex = /^(([a-zA-Z\-\.0-9]+):)?(\d+)$/; // parse "80" and "localhost:80" or even "42mEANINg-life.com:80"
@@ -44,24 +43,30 @@ class Narrier {
         // console.log(this.addr);
     }
     ;
-    start = () => {
+    start = async () => {
         const addr = this.addr;
-        this.server = net.createServer((from) => {
-            const to = net.createConnection({
-                host: addr.to.host,
-                port: addr.to.port,
-            });
-            from.pipe(to);
-            to.pipe(from);
-        }).listen(addr.from.port, addr.from.host, () => {
-            console.log(`
+        await new Promise((resolve) => {
+            this.server = net.createServer((from) => {
+                const to = net.createConnection({
+                    host: addr.to.host,
+                    port: addr.to.port,
+                });
+                from.pipe(to);
+                to.pipe(from);
+            }).listen(addr.from.port, addr.from.host, () => {
+                console.log(`
                 Port forwarding
-                from: ${this.addr.from.host + ":" + this.addr.from.port}
-                to: ${this.addr.to.host + ":" + this.addr.to.port}`);
+                from: ${(this.addr.from.host ? this.addr.from.host : "127.0.0.1") + ":" + this.addr.from.port}
+                to: ${(this.addr.to.host ? this.addr.to.host : "127.0.0.1") + ":" + this.addr.to.port}`);
+                resolve();
+            });
         });
     };
-    stop = () => {
-        this.server?.close();
+    stop = async () => {
+        await new Promise((resolve) => {
+            this.server?.close();
+            resolve();
+        });
     };
 }
 exports.Narrier = Narrier;
