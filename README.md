@@ -1,57 +1,51 @@
-# npm dual package template
+# Narrier
+## NodeJS Port Forward module
 
-[Thanks to](https://github.com/azu/tsconfig-to-dual-package)
+### How to use
 
-what does **dual** mean? => **CommonJS** & **ESM**
-
-## Install
-
-Clone the repo and install dependencies:
-
-```bash
-git clone https://github.com/DevShion/narrier.git YOUR_PROJECT_NAME
-cd YOUR_PROJECT_NAME
-npm install
+```sh
+npm i @devshion/narrier
 ```
 
-or use Template Button on this page.
+```ts
+import { Narrier } from "@devshion/narrier";
 
-## How to Use
+const narrier = new Narrier({
+    from: "3003", // also support "IP_OR_DOMAIN:PORT"
+    to: "80", // same
+});
 
-### First, Follow this site and prepare for packaging
+// start
+narrier.start().then(() => {
+    // change process id here if you use "sudo"
+});
 
-[](https://zenn.dev/missselfi/articles/d368f7296aae04)
-
-### Update your package version in package.json
-
-```json title="package.json"
-{
-    ...
-    "name": "YOUR_NAME/YOUR_PROJECT_NAME",
-    // something like...
-    "version": "1.0.0", //  => "version": "1.0.1",
-    ...
-}
+// stop
+narier.srop().then(() => {
+    // write your code here
+});
 ```
 
-### Build
+### Use Well known port?
 
-```bash
-npm run build
+```sh title="CentOS"
+$ sudo yum install libcap
+Last metadata expiration check: 1 day, 18:51:33 ago on Thu Jul 25 01:01:27 2024.
+Package libcap-2.48-2.amzn2023.0.3.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
+
+$ sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 ```
 
-This will create **cjs**, **module** folder.
+```sh title="Ubuntu"
+$ sudo apt-get install libcap2-bin
+Last metadata expiration check: 1 day, 18:51:33 ago on Thu Jul 25 01:01:27 2024.
+Package libcap-2.48-2.amzn2023.0.3.x86_64 is already installed.
+Dependencies resolved.
+Nothing to do.
+Complete!
 
-### Push for publishing npm package
-
-```bash
-git add .
-git commit -m "COMMENT"
-git push origin main
-```
-
-### Packaging
-
-```bash
-npm publish
+$ sudo setcap cap_net_bind_service=+ep `readlink -f \`which node\``
 ```
